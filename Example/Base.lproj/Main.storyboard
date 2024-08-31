@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="846-Sg-q9c">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22685"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="ImageCropMiniExample" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="x2t-6C-9Ew">
+                                <rect key="frame" x="16" y="119" width="361" height="582.33333333333337"/>
+                                <color key="backgroundColor" white="0.10289115646258504" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="251" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="69T-cW-cBN">
+                                <rect key="frame" x="135" y="717.33333333333337" width="123" height="84.666666666666629"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cg6-tU-SdG">
+                                        <rect key="frame" x="0.0" y="0.0" width="123" height="34.333333333333336"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="filled" title="Select Image"/>
+                                        <connections>
+                                            <action selector="selectImageTap:" destination="BYZ-38-t0r" eventType="touchUpInside" id="4ST-qh-sct"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jcw-9d-KaX">
+                                        <rect key="frame" x="0.0" y="50.333333333333258" width="123" height="34.333333333333343"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="filled" title="Edit"/>
+                                        <connections>
+                                            <action selector="editTap:" destination="BYZ-38-t0r" eventType="touchUpInside" id="RHJ-wp-e32"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="cg6-tU-SdG" firstAttribute="height" secondItem="jcw-9d-KaX" secondAttribute="height" id="TpQ-Q4-TwK"/>
+                                    <constraint firstItem="cg6-tU-SdG" firstAttribute="width" secondItem="jcw-9d-KaX" secondAttribute="width" id="alH-uD-cAa"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="69T-cW-cBN" secondAttribute="bottom" constant="16" id="5Lf-41-mYe"/>
+                            <constraint firstItem="69T-cW-cBN" firstAttribute="top" secondItem="x2t-6C-9Ew" secondAttribute="bottom" constant="16" id="9jG-Bw-zVQ"/>
+                            <constraint firstItem="x2t-6C-9Ew" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="16" id="McS-3e-pvR"/>
+                            <constraint firstItem="69T-cW-cBN" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="aag-WA-taK"/>
+                            <constraint firstItem="x2t-6C-9Ew" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="rcM-aK-4sX"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="x2t-6C-9Ew" secondAttribute="trailing" constant="16" id="z7Z-VT-DBb"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="rNP-K1-9xh"/>
+                    <connections>
+                        <outlet property="editButton" destination="jcw-9d-KaX" id="mbB-wm-1QD"/>
+                        <outlet property="imageView" destination="x2t-6C-9Ew" id="i14-pW-CF1"/>
+                        <outlet property="selectImageButton" destination="cg6-tU-SdG" id="LCl-5V-BCF"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1037.4045801526718" y="-34.507042253521128"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="GRg-KY-sih">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="846-Sg-q9c" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="EQv-dp-DaK">
+                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="Leu-Yj-twC"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4qI-Ua-SMb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="110.68702290076335" y="-34.507042253521128"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

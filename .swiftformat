@@ -1,0 +1,33 @@
+# file options
+
+--symlinks ignore
+--swiftversion 5.10
+
+# format options
+
+--indent 4
+--tabwidth 4
+--xcodeindentation enabled
+--ranges no-space
+--comments indent
+--exponentcase lowercase
+--extensionacl on-declarations
+--ifdef no-indent
+--importgrouping testable-top
+--operatorfunc no-space
+--nospaceoperators ..<, ...
+--ranges no-space
+--selfrequired validate
+--stripunusedargs unnamed-only
+--wraparguments preserve
+--wrapcollections preserve
+--wrapparameters preserve
+
+
+# rules
+
+--enable isEmpty
+--disable blankLinesBetweenScopes
+--disable wrapMultilineStatementBraces
+--disable conditionalAssignment
+--disable blankLinesAroundMark

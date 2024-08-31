@@ -1,0 +1,56 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "FREEFORM" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "自由形式"
+          }
+        }
+      }
+    },
+    "LANDSCAPE" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ランドスケープ"
+          }
+        }
+      }
+    },
+    "ORIGINAL" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "オリジナル"
+          }
+        }
+      }
+    },
+    "PORTRAIT" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ポートレート"
+          }
+        }
+      }
+    },
+    "SQUARE" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "スクエア"
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}
