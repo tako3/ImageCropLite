@@ -168,7 +168,7 @@ extension UIImageView {
     }
 }
 
-extension UIPanGestureRecognizer.State: CustomDebugStringConvertible {
+extension UIPanGestureRecognizer.State: @retroactive CustomDebugStringConvertible {
     public var debugDescription: String {
         switch self {
         case .possible:
