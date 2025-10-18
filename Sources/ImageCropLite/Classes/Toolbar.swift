@@ -213,7 +213,7 @@ extension Toolbar {
     // stack view breaks layout when rotates so manually layout without using stack view
     private func configureButtons(toolbarConfig: CropToolbarConfiguration, aspectRatio: AspectRatio) {
         // setup buttons
-        let imgConfig = UIImage.SymbolConfiguration(weight: .semibold)
+        let imgConfig = UIImage.SymbolConfiguration(pointSize: 17, weight: .semibold)
         var btnConfig = UIButton.Configuration.plain()
         // left side
         // add close & reset buttons is visible
@@ -411,7 +411,7 @@ extension Toolbar {
     private func setAspectRatioButtonImage(for aspectRatio: AspectRatio) {
         let systemName = aspectRatio == .freeform ? "aspectratio" : "aspectratio.fill"
         var config = aspectRatioButton?.configuration
-        let imageConfig = UIImage.SymbolConfiguration(weight: .semibold)
+        let imageConfig = UIImage.SymbolConfiguration(pointSize: 17, weight: .semibold)
         config?.image = .init(systemName: systemName, withConfiguration: imageConfig)
         aspectRatioButton?.configuration = config
     }
