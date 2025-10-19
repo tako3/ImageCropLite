@@ -3,11 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 60;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C26BCBF32C8B54D90073444A /* ImageCropLite in Frameworks */ = {isa = PBXBuildFile; productRef = C26BCBF22C8B54D90073444A /* ImageCropLite */; };
+		C28129802EA333320081DE52 /* ImageCropLite in Frameworks */ = {isa = PBXBuildFile; productRef = C281297F2EA333320081DE52 /* ImageCropLite */; };
 		C2C69A2D2C7EC652009A4256 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C69A2C2C7EC652009A4256 /* ViewController.swift */; };
 		C2C69A2F2C7EC659009A4256 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C69A2E2C7EC659009A4256 /* SceneDelegate.swift */; };
 		C2C69A312C7EC65E009A4256 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C69A302C7EC65E009A4256 /* AppDelegate.swift */; };
@@ -18,7 +18,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		C26BCBF12C8B54D10073444A /* ImageCropLite */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = ImageCropLite; path = ..; sourceTree = "<group>"; };
 		C2C69A2C2C7EC652009A4256 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		C2C69A2E2C7EC659009A4256 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		C2C69A302C7EC65E009A4256 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -35,7 +34,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C26BCBF32C8B54D90073444A /* ImageCropLite in Frameworks */,
+				C28129802EA333320081DE52 /* ImageCropLite in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -61,7 +60,6 @@
 		C2F701042C7EBDA8003D8633 = {
 			isa = PBXGroup;
 			children = (
-				C26BCBF12C8B54D10073444A /* ImageCropLite */,
 				C2C69A302C7EC65E009A4256 /* AppDelegate.swift */,
 				C2C69A372C7EC666009A4256 /* Assets.xcassets */,
 				C2C69A362C7EC666009A4256 /* Base.lproj */,
@@ -99,10 +97,10 @@
 			);
 			name = ImageCropLiteExample;
 			packageProductDependencies = (
-				C26BCBF22C8B54D90073444A /* ImageCropLite */,
+				C281297F2EA333320081DE52 /* ImageCropLite */,
 			);
 			productName = ImageCropLiteExample;
-			productReference = C2F7010D2C7EBDA8003D8633;
+			productReference = C2F7010D2C7EBDA8003D8633 /* ImageCropLiteExample.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -113,7 +111,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1540;
-				LastUpgradeCheck = 1540;
+				LastUpgradeCheck = 2600;
 				TargetAttributes = {
 					C2F7010C2C7EBDA8003D8633 = {
 						CreatedOnToolsVersion = 15.4;
@@ -132,6 +130,7 @@
 			);
 			mainGroup = C2F701042C7EBDA8003D8633;
 			packageReferences = (
+				C281297E2EA333320081DE52 /* XCLocalSwiftPackageReference "../../ImageCropLite" */,
 			);
 			productRefGroup = C2F7010E2C7EBDA8003D8633 /* Products */;
 			projectDirPath = "";
@@ -248,10 +247,16 @@
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_STRICT_CONCURRENCY = complete;
-				SWIFT_VERSION = 5.0;
+				SWIFT_UPCOMING_FEATURE_EXISTENTIAL_ANY = YES;
+				SWIFT_UPCOMING_FEATURE_INFER_ISOLATED_CONFORMANCES = YES;
+				SWIFT_UPCOMING_FEATURE_INTERNAL_IMPORTS_BY_DEFAULT = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_UPCOMING_FEATURE_NONISOLATED_NONSENDING_BY_DEFAULT = YES;
+				SWIFT_VERSION = 6.0;
 			};
 			name = Debug;
 		};
@@ -307,9 +312,15 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_STRICT_CONCURRENCY = complete;
-				SWIFT_VERSION = 5.0;
+				SWIFT_UPCOMING_FEATURE_EXISTENTIAL_ANY = YES;
+				SWIFT_UPCOMING_FEATURE_INFER_ISOLATED_CONFORMANCES = YES;
+				SWIFT_UPCOMING_FEATURE_INTERNAL_IMPORTS_BY_DEFAULT = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_UPCOMING_FEATURE_NONISOLATED_NONSENDING_BY_DEFAULT = YES;
+				SWIFT_VERSION = 6.0;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -341,9 +352,15 @@
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
+				SWIFT_UPCOMING_FEATURE_EXISTENTIAL_ANY = YES;
+				SWIFT_UPCOMING_FEATURE_INFER_ISOLATED_CONFORMANCES = YES;
+				SWIFT_UPCOMING_FEATURE_INTERNAL_IMPORTS_BY_DEFAULT = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_UPCOMING_FEATURE_NONISOLATED_NONSENDING_BY_DEFAULT = YES;
+				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -375,8 +392,14 @@
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
+				SWIFT_UPCOMING_FEATURE_EXISTENTIAL_ANY = YES;
+				SWIFT_UPCOMING_FEATURE_INFER_ISOLATED_CONFORMANCES = YES;
+				SWIFT_UPCOMING_FEATURE_INTERNAL_IMPORTS_BY_DEFAULT = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_UPCOMING_FEATURE_NONISOLATED_NONSENDING_BY_DEFAULT = YES;
+				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -404,8 +427,15 @@
 		};
 /* End XCConfigurationList section */
 
+/* Begin XCLocalSwiftPackageReference section */
+		C281297E2EA333320081DE52 /* XCLocalSwiftPackageReference "../../ImageCropLite" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = ../../ImageCropLite;
+		};
+/* End XCLocalSwiftPackageReference section */
+
 /* Begin XCSwiftPackageProductDependency section */
-		C26BCBF22C8B54D90073444A /* ImageCropLite */ = {
+		C281297F2EA333320081DE52 /* ImageCropLite */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = ImageCropLite;
 		};

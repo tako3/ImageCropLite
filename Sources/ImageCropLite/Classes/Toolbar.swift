@@ -213,7 +213,7 @@ extension Toolbar {
     // stack view breaks layout when rotates so manually layout without using stack view
     private func configureButtons(toolbarConfig: CropToolbarConfiguration, aspectRatio: AspectRatio) {
         // setup buttons
-        let imgConfig = UIImage.SymbolConfiguration(weight: .semibold)
+        let imgConfig = UIImage.SymbolConfiguration(pointSize: 17, weight: .semibold)
         var btnConfig = UIButton.Configuration.plain()
         // left side
         // add close & reset buttons is visible
@@ -225,6 +225,7 @@ extension Toolbar {
                                         primaryAction: .init { [weak self] _ in
                                             self?.delegate?.cancelDidTap()
                                         })
+            cancelButton.accessibilityLabel = .init(localized: "close", bundle: .module)
             appendConstraints(targetButton: cancelButton, parentView: leftSideView)
             previousButton = cancelButton
         }
@@ -237,6 +238,7 @@ extension Toolbar {
                                        primaryAction: .init { [weak self] _ in
                                            self?.delegate?.resetDidTap()
                                        })
+            resetButton.accessibilityLabel = .init(localized: "reset", bundle: .module)
             self.resetButton = resetButton
             appendConstraints(targetButton: resetButton, previousButton: previousButton,
                               parentView: leftSideView)
@@ -263,6 +265,7 @@ extension Toolbar {
                                       primaryAction: .init { [weak self] _ in
                                           self?.delegate?.flipDidTap()
                                       })
+            flipButton.accessibilityLabel = .init(localized: "flip", bundle: .module)
             appendConstraints(targetButton: flipButton, parentView: rightSideView)
             previousButton = flipButton
         }
@@ -275,6 +278,7 @@ extension Toolbar {
                                         primaryAction: .init { [weak self] _ in
                                             self?.delegate?.rotateDidTap()
                                         })
+            rotateButton.accessibilityLabel = .init(localized: "rotate", bundle: .module)
             appendConstraints(targetButton: rotateButton, previousButton: previousButton,
                               parentView: rightSideView)
             previousButton = rotateButton
@@ -286,6 +290,7 @@ extension Toolbar {
             let aspectRatioMenus = configureAspectRatioMenus()
             aspectRatioButton.menu = .init(children: [aspectRatioMenus])
             aspectRatioButton.showsMenuAsPrimaryAction = true
+            aspectRatioButton.accessibilityLabel = .init(localized: "aspect ratio", bundle: .module)
             self.aspectRatioButton = aspectRatioButton
             setAspectRatioButtonImage(for: aspectRatio)
             appendConstraints(targetButton: aspectRatioButton, previousButton: previousButton,
@@ -301,6 +306,7 @@ extension Toolbar {
                                       primaryAction: .init { [weak self] _ in
                                           self?.delegate?.doneDidTap()
                                       })
+            doneButton.accessibilityLabel = .init(localized: "done", bundle: .module)
             appendConstraints(targetButton: doneButton, previousButton: previousButton,
                               parentView: rightSideView)
             previousButton = doneButton
@@ -405,7 +411,7 @@ extension Toolbar {
     private func setAspectRatioButtonImage(for aspectRatio: AspectRatio) {
         let systemName = aspectRatio == .freeform ? "aspectratio" : "aspectratio.fill"
         var config = aspectRatioButton?.configuration
-        let imageConfig = UIImage.SymbolConfiguration(weight: .semibold)
+        let imageConfig = UIImage.SymbolConfiguration(pointSize: 17, weight: .semibold)
         config?.image = .init(systemName: systemName, withConfiguration: imageConfig)
         aspectRatioButton?.configuration = config
     }
