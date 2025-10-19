@@ -7,7 +7,8 @@
 
 import UIKit
 
-private final class OuterLines: CAShapeLayer, CAAnimationDelegate {
+@MainActor
+private final class OuterLines: CAShapeLayer, @preconcurrency CAAnimationDelegate {
     private static let lineThickness: CGFloat = 1
     private static let cornerLineThickness: CGFloat = 3
     private static let cornerLineLength: CGFloat = 20
@@ -21,7 +22,7 @@ private final class OuterLines: CAShapeLayer, CAAnimationDelegate {
         case right
     }
 
-    private enum CornerLinePosition: CaseIterable {
+    private enum CornerLinePosition: CaseIterable, CustomDebugStringConvertible {
         case topLeft
         case topMiddle
         case topRight
@@ -30,6 +31,30 @@ private final class OuterLines: CAShapeLayer, CAAnimationDelegate {
         case bottomRight
         case leftMiddle
         case rightMiddle
+
+        var debugDescription: String {
+            switch self {
+            case .topLeft: "top left"
+            case .topMiddle: "top middle"
+            case .topRight: "top right"
+            case .bottomLeft: "bottom left"
+            case .bottomMiddle: "bottom middle"
+            case .bottomRight: "bottom right"
+            case .leftMiddle: "left"
+            case .rightMiddle: "right"
+            }
+        }
+
+        static let accessibilityPositions: [CornerLinePosition] = [
+            .topLeft,
+            .topMiddle,
+            .topRight,
+            .leftMiddle,
+            .rightMiddle,
+            .bottomLeft,
+            .bottomMiddle,
+            .bottomRight,
+        ]
     }
 
     convenience init(fillColor: CGColor) {
@@ -39,6 +64,103 @@ private final class OuterLines: CAShapeLayer, CAAnimationDelegate {
 
     func draw(in rect: CGRect) {
         path = paths(in: rect)
+    }
+
+    func makeAccessibiltyElements(accessibilityContainer container: Any) -> [UIAccessibilityElement] {
+        CornerLinePosition.accessibilityPositions.map { position in
+            let element = UIAccessibilityElement(accessibilityContainer: container)
+            switch position {
+            case .topLeft:
+                element.accessibilityLabel = .init(
+                    localized: "top left crop handle", bundle: .module
+                )
+            case .topMiddle:
+                element.accessibilityLabel = .init(
+                    localized: "top crop handle", bundle: .module
+                )
+            case .topRight:
+                element.accessibilityLabel = .init(
+                    localized: "top right crop handle", bundle: .module
+                )
+            case .bottomLeft:
+                element.accessibilityLabel = .init(
+                    localized: "bottom left crop handle", bundle: .module
+                )
+            case .bottomMiddle:
+                element.accessibilityLabel = .init(
+                    localized: "bottom crop handle", bundle: .module
+                )
+            case .bottomRight:
+                element.accessibilityLabel = .init(
+                    localized: "bottom right crop handle", bundle: .module
+                )
+            case .leftMiddle:
+                element.accessibilityLabel = .init(
+                    localized: "left crop handle", bundle: .module
+                )
+            case .rightMiddle:
+                element.accessibilityLabel = .init(
+                    localized: "right crop handle", bundle: .module
+                )
+            }
+            element.accessibilityTraits = [.adjustable]
+            element.accessibilityHint = .init(
+                localized: "double tap and hold to adjusting cropping area",
+                bundle: .module
+            )
+            return element
+        }
+    }
+
+    func makeAccessibilityFrameInContainerSpace(in rect: CGRect) -> [CGRect] {
+        CornerLinePosition.accessibilityPositions.map { position in
+            let origin = rect.origin
+            let margin = CGFloat(4)
+            let frame: CGRect
+            switch position {
+            case .topLeft:
+                frame = .init(
+                    x: origin.x - margin, y: origin.y - margin,
+                    width: Self.cornerLineLength + 2 * margin, height: Self.cornerLineLength + 2 * margin
+                )
+            case .topMiddle:
+                frame = .init(
+                    x: origin.x + Self.cornerLineLength + margin, y: origin.y - (Self.cornerLineThickness + margin),
+                    width: rect.width - 2 * (Self.cornerLineLength + margin), height: Self.cornerLineThickness + 2 * margin
+                )
+            case .topRight:
+                frame = .init(
+                    x: origin.x + rect.width - (Self.cornerLineLength + margin), y: origin.y - margin,
+                    width: Self.cornerLineLength + 2 * margin, height: Self.cornerLineLength + 2 * margin
+                )
+            case .bottomLeft:
+                frame = .init(
+                    x: origin.x - margin, y: origin.y + rect.height - (Self.cornerLineLength + margin),
+                    width: Self.cornerLineLength + 2 * margin, height: Self.cornerLineLength + 2 * margin
+                )
+            case .bottomMiddle:
+                frame = .init(
+                    x: origin.x + Self.cornerLineLength + margin, y: origin.y + rect.height - margin,
+                    width: rect.width - 2 * (Self.cornerLineLength + margin), height: Self.cornerLineThickness + 2 * margin
+                )
+            case .bottomRight:
+                frame = .init(
+                    x: origin.x + rect.width - (Self.cornerLineLength + margin), y: origin.y + rect.height - (Self.cornerLineLength + margin),
+                    width: Self.cornerLineLength + 2 * margin, height: Self.cornerLineLength + 2 * margin
+                )
+            case .leftMiddle:
+                frame = .init(
+                    x: origin.x - margin, y: origin.y + Self.cornerLineLength + margin,
+                    width: Self.cornerLineThickness + 2 * margin, height: rect.height - 2 * (Self.cornerLineLength + margin)
+                )
+            case .rightMiddle:
+                frame = .init(
+                    x: origin.x + rect.width - margin, y: origin.y + Self.cornerLineLength + margin,
+                    width: Self.cornerLineThickness + 2 * margin, height: rect.height - 2 * (Self.cornerLineLength + margin)
+                )
+            }
+            return frame
+        }
     }
 
     func animatePath(to rect: CGRect) {
@@ -301,6 +423,8 @@ private final class CropView: UIView {
         layer.addSublayer(outerLines)
         isUserInteractionEnabled = false
         innerLines.opacity = 0.0
+        isAccessibilityElement = false
+        accessibilityElements = outerLines.makeAccessibiltyElements(accessibilityContainer: self)
     }
 
     override func layoutSubviews() {
@@ -310,14 +434,13 @@ private final class CropView: UIView {
         outerLines.frame = bounds
         if cropRect != .zero {
             draw()
+            setAccessibilityFrames()
         }
     }
 
     func shouldReceiveTouch(at location: CGPoint) -> Bool {
         let inner = cropRect.insetBy(dx: 22, dy: 22)
         let outer = cropRect.insetBy(dx: -22, dy: -22)
-        //        print("inner:", inner)
-        //        print("outer:", outer)
         return outer.contains(location) && !inner.contains(location)
     }
 
@@ -334,13 +457,17 @@ private final class CropView: UIView {
         }
 
         if let aspectRatio {
-            panGestureChanged(at: gesturePosition, by: translation,
-                              contentOffset: contentOffset, contentPadding: contentPadding,
-                              scaledContentSize: scaledContentSize, aspectRatio: aspectRatio)
+            panGestureChanged(
+                at: gesturePosition, by: translation,
+                contentOffset: contentOffset, contentPadding: contentPadding,
+                scaledContentSize: scaledContentSize, aspectRatio: aspectRatio
+            )
         } else {
-            panGestureChanged(at: gesturePosition, by: translation,
-                              contentOffset: contentOffset, contentPadding: contentPadding,
-                              scaledContentSize: scaledContentSize)
+            panGestureChanged(
+                at: gesturePosition, by: translation,
+                contentOffset: contentOffset, contentPadding: contentPadding,
+                scaledContentSize: scaledContentSize
+            )
         }
 
         draw()
@@ -368,9 +495,10 @@ private final class CropView: UIView {
     }
 
     func animate(cropRect: CGRect) {
+        self.cropRect = cropRect
         innerLines.draw(in: cropRect)
         outerLines.animatePath(to: cropRect)
-        self.cropRect = cropRect
+        setAccessibilityFrames()
     }
 }
 // MARK: - private OverlayView
@@ -378,6 +506,17 @@ extension CropView {
     private func draw() {
         innerLines.draw(in: cropRect)
         outerLines.draw(in: cropRect)
+    }
+
+    private func setAccessibilityFrames() {
+        if let accessibilityElements = accessibilityElements as? [UIAccessibilityElement] {
+            zip(
+                accessibilityElements,
+                outerLines.makeAccessibilityFrameInContainerSpace(in: cropRect)
+            ).forEach { element, frame in
+                element.accessibilityFrameInContainerSpace = frame
+            }
+        }
     }
 
     private func panGestureChanged(at position: GridGesturePosition,
@@ -447,12 +586,10 @@ extension CropView {
         }
     }
 
-    private func panGestureChanged(at position: GridGesturePosition,
-                                   by translation: CGPoint,
-                                   contentOffset: CGPoint,
-                                   contentPadding: UIEdgeInsets,
-                                   scaledContentSize: CGSize,
-                                   aspectRatio: CGFloat) {
+    private func panGestureChanged(
+        at position: GridGesturePosition, by translation: CGPoint, contentOffset: CGPoint,
+        contentPadding: UIEdgeInsets, scaledContentSize: CGSize, aspectRatio: CGFloat
+    ) {
         switch position {
         case .topLeft:
             let originX: CGFloat
@@ -952,3 +1089,4 @@ final class OverlayView: UIView {
         cropView.setGrid(visible: visible)
     }
 }
+
